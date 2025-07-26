@@ -130,6 +130,30 @@ GraphicalMapEditor/fast:
 	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GraphicalMapEditor.dir/build.make src/CMakeFiles/GraphicalMapEditor.dir/build
 .PHONY : GraphicalMapEditor/fast
 
+AssetManager.o: AssetManager.cpp.o
+.PHONY : AssetManager.o
+
+# target to build an object file
+AssetManager.cpp.o:
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GraphicalMapEditor.dir/build.make src/CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o
+.PHONY : AssetManager.cpp.o
+
+AssetManager.i: AssetManager.cpp.i
+.PHONY : AssetManager.i
+
+# target to preprocess a source file
+AssetManager.cpp.i:
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GraphicalMapEditor.dir/build.make src/CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.i
+.PHONY : AssetManager.cpp.i
+
+AssetManager.s: AssetManager.cpp.s
+.PHONY : AssetManager.s
+
+# target to generate assembly for a file
+AssetManager.cpp.s:
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GraphicalMapEditor.dir/build.make src/CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.s
+.PHONY : AssetManager.cpp.s
+
 GraphicalMapEditor.o: GraphicalMapEditor.cpp.o
 .PHONY : GraphicalMapEditor.o
 
@@ -153,6 +177,30 @@ GraphicalMapEditor.s: GraphicalMapEditor.cpp.s
 GraphicalMapEditor.cpp.s:
 	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GraphicalMapEditor.dir/build.make src/CMakeFiles/GraphicalMapEditor.dir/GraphicalMapEditor.cpp.s
 .PHONY : GraphicalMapEditor.cpp.s
+
+MapData.o: MapData.cpp.o
+.PHONY : MapData.o
+
+# target to build an object file
+MapData.cpp.o:
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GraphicalMapEditor.dir/build.make src/CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o
+.PHONY : MapData.cpp.o
+
+MapData.i: MapData.cpp.i
+.PHONY : MapData.i
+
+# target to preprocess a source file
+MapData.cpp.i:
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GraphicalMapEditor.dir/build.make src/CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.i
+.PHONY : MapData.cpp.i
+
+MapData.s: MapData.cpp.s
+.PHONY : MapData.s
+
+# target to generate assembly for a file
+MapData.cpp.s:
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/GraphicalMapEditor.dir/build.make src/CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.s
+.PHONY : MapData.cpp.s
 
 ModernRenderer.o: ModernRenderer.cpp.o
 .PHONY : ModernRenderer.o
@@ -379,9 +427,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... GraphicalMapEditor"
+	@echo "... AssetManager.o"
+	@echo "... AssetManager.i"
+	@echo "... AssetManager.s"
 	@echo "... GraphicalMapEditor.o"
 	@echo "... GraphicalMapEditor.i"
 	@echo "... GraphicalMapEditor.s"
+	@echo "... MapData.o"
+	@echo "... MapData.i"
+	@echo "... MapData.s"
 	@echo "... ModernRenderer.o"
 	@echo "... ModernRenderer.i"
 	@echo "... ModernRenderer.s"

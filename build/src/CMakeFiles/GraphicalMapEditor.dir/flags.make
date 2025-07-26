@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui -I/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/backends -I/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/src -I/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/include -iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+CXX_INCLUDES = -I/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui -I/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/backends -I/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/src -I/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/include -I/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/assets -iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
 
 CXX_FLAGSarm64 =  -std=c++17 -Wall -Wextra -g -std=gnu++17 -arch arm64
 

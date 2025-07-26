@@ -18,6 +18,8 @@
 
 // Modern OpenGL includes
 #include "ModernRenderer.h"
+#include "MapData.h"
+#include "AssetManager.h"
 
 // Simple camera class for the graphical editor
 class GraphicalCamera {
@@ -110,6 +112,7 @@ public:
         , showTerrainPanel(false)
         , showModelPanel(false)
         , showConsole(false)
+        , showAssetBrowser(false)
     {
     }
     
@@ -142,9 +145,16 @@ public:
             return false;
         }
         
-        // Initialize camera and scene
+        // Initialize camera, scene, map data, and asset manager
         camera = std::make_unique<GraphicalCamera>();
         scene = std::make_unique<GraphicalScene>();
+        mapData = std::make_unique<MapData>();
+        assetManager = std::make_unique<AssetManager>();
+        
+        if (!assetManager->Initialize()) {
+            std::cerr << "Failed to initialize asset manager" << std::endl;
+            return false;
+        }
         
         std::cout << "Cryptic Dungeon Map Editor initialized successfully" << std::endl;
         return true;
@@ -272,16 +282,9 @@ private:
         glm::mat4 projection = camera->GetProjectionMatrix();
         
         // Render scene with modern OpenGL
-        if (renderer) {
-            // Render terrain
-            renderer->RenderTerrain(view, projection);
-            
-            // Render cube at center
-            glm::mat4 cubeModel = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 5.0f, 0.0f));
-            renderer->RenderCube(cubeModel, view, projection);
-            
-            // Render grid
-            renderer->RenderGrid(view, projection);
+        if (renderer && mapData) {
+            // Render all map objects
+            renderer->RenderMapObjects(*mapData, view, projection);
         }
         
         // Render ImGui UI
@@ -324,13 +327,21 @@ private:
         if (ImGui::BeginMainMenuBar()) {
             if (ImGui::BeginMenu("File")) {
                 if (ImGui::MenuItem("New", "Ctrl+N")) {
-                    // TODO: New map
+                    if (mapData) {
+                        mapData->NewMap();
+                    }
                 }
                 if (ImGui::MenuItem("Open", "Ctrl+O")) {
-                    // TODO: Open map
+                    // TODO: Open file dialog
+                    if (mapData) {
+                        mapData->LoadMap("test_map.cdm");
+                    }
                 }
                 if (ImGui::MenuItem("Save", "Ctrl+S")) {
-                    // TODO: Save map
+                    // TODO: Save file dialog
+                    if (mapData) {
+                        mapData->SaveMap("test_map.cdm");
+                    }
                 }
                 ImGui::Separator();
                 if (ImGui::MenuItem("Exit", "Alt+F4")) {
@@ -362,11 +373,34 @@ private:
             if (ImGui::BeginMenu("View")) {
                 if (ImGui::MenuItem("Properties", nullptr, &showProperties)) {}
                 if (ImGui::MenuItem("Hierarchy", nullptr, &showHierarchy)) {}
-                if (ImGui::MenuItem("Terrain Panel", nullptr, &showTerrainPanel)) {}
-                if (ImGui::MenuItem("Model Panel", nullptr, &showModelPanel)) {}
+                if (ImGui::MenuItem("Terrain Editor", nullptr, &showTerrainPanel)) {}
+                if (ImGui::MenuItem("Model Editor", nullptr, &showModelPanel)) {}
                 if (ImGui::MenuItem("Console", nullptr, &showConsole)) {}
+                if (ImGui::MenuItem("Asset Browser", nullptr, &showAssetBrowser)) {}
                 ImGui::Separator();
                 if (ImGui::MenuItem("Demo Window", nullptr, &showDemoWindow)) {}
+                ImGui::EndMenu();
+            }
+            
+            if (ImGui::BeginMenu("Tools")) {
+                if (ImGui::MenuItem("Terrain Editor")) {
+                    SetMode(0);
+                    showTerrainPanel = true;
+                }
+                if (ImGui::MenuItem("Model Editor")) {
+                    SetMode(1);
+                    showModelPanel = true;
+                }
+                if (ImGui::MenuItem("Camera Mode")) {
+                    SetMode(2);
+                }
+                ImGui::Separator();
+                if (ImGui::MenuItem("Grid Settings...")) {
+                    // TODO: Grid settings dialog
+                }
+                if (ImGui::MenuItem("Snap Settings...")) {
+                    // TODO: Snap settings dialog
+                }
                 ImGui::EndMenu();
             }
             
@@ -394,9 +428,19 @@ private:
         
         ImGui::SetNextWindowSize(ImVec2(300, 400), ImGuiCond_FirstUseEver);
         if (ImGui::Begin("Properties", &showProperties)) {
-            if (ImGui::CollapsingHeader("Camera")) {
+            ImGui::Text("Selected Object Properties");
+            ImGui::Separator();
+            
+            // Camera properties
+            if (ImGui::CollapsingHeader("Camera", ImGuiTreeNodeFlags_DefaultOpen)) {
+                glm::vec3 pos = camera->GetPosition();
+                float posArray[3] = {pos.x, pos.y, pos.z};
+                if (ImGui::DragFloat3("Position", posArray, 0.1f)) {
+                    camera->SetPosition(glm::vec3(posArray[0], posArray[1], posArray[2]));
+                }
+                
                 float fov = camera->GetFOV();
-                if (ImGui::SliderFloat("FOV", &fov, 10.0f, 120.0f)) {
+                if (ImGui::SliderFloat("FOV", &fov, 30.0f, 120.0f)) {
                     camera->SetFOV(fov);
                 }
                 
@@ -404,12 +448,50 @@ private:
                 if (ImGui::SliderFloat("Aspect Ratio", &aspect, 0.5f, 3.0f)) {
                     camera->SetAspectRatio(aspect);
                 }
+                
+                // Camera controls
+                if (ImGui::Button("Reset Camera")) {
+                    camera->SetPosition(glm::vec3(0.0f, 50.0f, 50.0f));
+                }
             }
             
+            // Scene properties
             if (ImGui::CollapsingHeader("Scene")) {
-                ImGui::Text("Ambient Light");
-                static float ambient[3] = {0.2f, 0.2f, 0.2f};
-                ImGui::ColorEdit3("##Ambient", ambient);
+                static float ambientLight[3] = {0.2f, 0.2f, 0.2f};
+                ImGui::ColorEdit3("Ambient Light", ambientLight);
+                
+                static float directionalLight[3] = {1.0f, 1.0f, 1.0f};
+                ImGui::ColorEdit3("Directional Light", directionalLight);
+                
+                static float lightIntensity = 1.0f;
+                ImGui::SliderFloat("Light Intensity", &lightIntensity, 0.0f, 2.0f);
+                
+                static bool showGrid = true;
+                ImGui::Checkbox("Show Grid", &showGrid);
+                
+                static bool showAxes = true;
+                ImGui::Checkbox("Show Axes", &showAxes);
+            }
+            
+            // Selected object properties
+            if (ImGui::CollapsingHeader("Selected Object")) {
+                // TODO: Show properties of selected object
+                ImGui::Text("No object selected");
+                
+                static float objPos[3] = {0.0f, 0.0f, 0.0f};
+                ImGui::DragFloat3("Position", objPos, 0.1f);
+                
+                static float objRot[3] = {0.0f, 0.0f, 0.0f};
+                ImGui::DragFloat3("Rotation", objRot, 1.0f);
+                
+                static float objScale[3] = {1.0f, 1.0f, 1.0f};
+                ImGui::DragFloat3("Scale", objScale, 0.1f);
+                
+                static float objColor[3] = {1.0f, 1.0f, 1.0f};
+                ImGui::ColorEdit3("Color", objColor);
+                
+                static bool objVisible = true;
+                ImGui::Checkbox("Visible", &objVisible);
             }
             
             ImGui::End();
@@ -421,24 +503,50 @@ private:
         
         ImGui::SetNextWindowSize(ImVec2(250, 400), ImGuiCond_FirstUseEver);
         if (ImGui::Begin("Hierarchy", &showHierarchy)) {
-            if (ImGui::TreeNode("Scene")) {
-                if (ImGui::TreeNode("Terrain")) {
-                    if (ImGui::Button("Focus##Terrain")) {
-                        // Focus camera on terrain
-                        camera->SetPosition(glm::vec3(0.0f, 50.0f, 0.0f));
+            if (mapData) {
+                const auto& objects = mapData->GetAllObjects();
+                
+                if (ImGui::TreeNode("Scene")) {
+                    for (const auto& obj : objects) {
+                        ImGui::PushID(obj.id.c_str());
+                        
+                        bool nodeOpen = ImGui::TreeNode(obj.name.c_str());
+                        
+                        // Object controls
+                        if (nodeOpen) {
+                            // Focus button
+                            if (ImGui::Button("Focus")) {
+                                camera->SetPosition(obj.position + glm::vec3(20.0f, 20.0f, 20.0f));
+                            }
+                            ImGui::SameLine();
+                            
+                            // Delete button
+                            if (ImGui::Button("Delete")) {
+                                mapData->DeleteObject(obj.id);
+                            }
+                            
+                            // Object properties
+                            ImGui::Text("Type: %s", obj.type.c_str());
+                            ImGui::Text("Position: %.1f, %.1f, %.1f", obj.position.x, obj.position.y, obj.position.z);
+                            ImGui::Text("Visible: %s", obj.visible ? "Yes" : "No");
+                            
+                            ImGui::TreePop();
+                        }
+                        
+                        ImGui::PopID();
                     }
+                    
                     ImGui::TreePop();
                 }
                 
-                if (ImGui::TreeNode("Cube")) {
-                    if (ImGui::Button("Focus##Cube")) {
-                        // Focus camera on cube
-                        camera->SetPosition(glm::vec3(20.0f, 20.0f, 20.0f));
-                    }
-                    ImGui::TreePop();
+                // Add new object button
+                if (ImGui::Button("Add Cube")) {
+                    mapData->AddObject("New Cube", "cube", glm::vec3(10.0f, 5.0f, 10.0f));
                 }
-                
-                ImGui::TreePop();
+                ImGui::SameLine();
+                if (ImGui::Button("Add Terrain")) {
+                    mapData->AddObject("New Terrain", "terrain", glm::vec3(0.0f, 0.0f, 0.0f));
+                }
             }
             
             ImGui::End();
@@ -448,24 +556,57 @@ private:
     void RenderTerrainPanel() {
         if (!showTerrainPanel) return;
         
-        ImGui::SetNextWindowSize(ImVec2(300, 200), ImGuiCond_FirstUseEver);
+        ImGui::SetNextWindowSize(ImVec2(350, 400), ImGuiCond_FirstUseEver);
         if (ImGui::Begin("Terrain Editor", &showTerrainPanel)) {
             ImGui::Text("Terrain Tools");
+            ImGui::Separator();
             
+            // Tool selection
             static int tool = 0;
+            ImGui::Text("Tool:");
             ImGui::RadioButton("Paint", &tool, 0);
-            ImGui::SameLine();
             ImGui::RadioButton("Raise/Lower", &tool, 1);
-            ImGui::SameLine();
             ImGui::RadioButton("Smooth", &tool, 2);
+            ImGui::RadioButton("Flatten", &tool, 3);
+            ImGui::RadioButton("Noise", &tool, 4);
             
-            static int brush = 0;
-            ImGui::Text("Brush Size");
-            ImGui::SliderInt("##BrushSize", &brush, 1, 10);
+            ImGui::Separator();
             
-            static float strength = 1.0f;
-            ImGui::Text("Strength");
-            ImGui::SliderFloat("##Strength", &strength, 0.1f, 5.0f);
+            // Brush settings
+            ImGui::Text("Brush Settings");
+            static int brushSize = 5;
+            ImGui::SliderInt("Size", &brushSize, 1, 20);
+            
+            static float brushStrength = 1.0f;
+            ImGui::SliderFloat("Strength", &brushStrength, 0.1f, 5.0f);
+            
+            static float brushFalloff = 0.5f;
+            ImGui::SliderFloat("Falloff", &brushFalloff, 0.0f, 1.0f);
+            
+            ImGui::Separator();
+            
+            // Terrain settings
+            ImGui::Text("Terrain Settings");
+            static float terrainHeight = 0.0f;
+            ImGui::SliderFloat("Height", &terrainHeight, -10.0f, 10.0f);
+            
+            static float terrainScale = 1.0f;
+            ImGui::SliderFloat("Scale", &terrainScale, 0.1f, 5.0f);
+            
+            // Color picker for terrain
+            static float terrainColor[3] = {1.0f, 1.0f, 1.0f};
+            ImGui::ColorEdit3("Terrain Color", terrainColor);
+            
+            ImGui::Separator();
+            
+            // Action buttons
+            if (ImGui::Button("Apply Tool", ImVec2(120, 30))) {
+                // TODO: Apply terrain tool
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Reset Terrain", ImVec2(120, 30))) {
+                // TODO: Reset terrain
+            }
             
             ImGui::End();
         }
@@ -474,24 +615,90 @@ private:
     void RenderModelPanel() {
         if (!showModelPanel) return;
         
-        ImGui::SetNextWindowSize(ImVec2(300, 200), ImGuiCond_FirstUseEver);
+        ImGui::SetNextWindowSize(ImVec2(400, 500), ImGuiCond_FirstUseEver);
         if (ImGui::Begin("Model Editor", &showModelPanel)) {
             ImGui::Text("Model Tools");
+            ImGui::Separator();
             
+            // Tool selection
             static int tool = 0;
+            ImGui::Text("Tool:");
             ImGui::RadioButton("Place", &tool, 0);
-            ImGui::SameLine();
             ImGui::RadioButton("Select", &tool, 1);
-            ImGui::SameLine();
-            ImGui::RadioButton("Delete", &tool, 2);
+            ImGui::RadioButton("Move", &tool, 2);
+            ImGui::RadioButton("Rotate", &tool, 3);
+            ImGui::RadioButton("Scale", &tool, 4);
+            ImGui::RadioButton("Delete", &tool, 5);
             
+            ImGui::Separator();
+            
+            // Transform mode
             static int transform = 0;
-            ImGui::Text("Transform Mode");
-            ImGui::RadioButton("Translate", &transform, 0);
+            ImGui::Text("Transform Mode:");
+            ImGui::RadioButton("Local", &transform, 0);
+            ImGui::RadioButton("World", &transform, 1);
+            
+            ImGui::Separator();
+            
+            // Snapping settings
+            ImGui::Text("Snapping");
+            static bool snapToGrid = true;
+            ImGui::Checkbox("Snap to Grid", &snapToGrid);
+            
+            static float gridSize = 1.0f;
+            ImGui::SliderFloat("Grid Size", &gridSize, 0.1f, 10.0f);
+            
+            static bool snapToAngle = true;
+            ImGui::Checkbox("Snap to Angle", &snapToAngle);
+            
+            static float angleSnap = 15.0f;
+            ImGui::SliderFloat("Angle Snap", &angleSnap, 1.0f, 90.0f);
+            
+            ImGui::Separator();
+            
+            // Asset browser
+            if (assetManager) {
+                ImGui::Text("Asset Browser");
+                
+                static int selectedCategory = 0;
+                const auto& categories = AssetManager::CATEGORIES;
+                if (ImGui::BeginCombo("Category", categories[selectedCategory].c_str())) {
+                    for (int i = 0; i < categories.size(); i++) {
+                        bool isSelected = (selectedCategory == i);
+                        if (ImGui::Selectable(categories[i].c_str(), isSelected)) {
+                            selectedCategory = i;
+                        }
+                        if (isSelected) {
+                            ImGui::SetItemDefaultFocus();
+                        }
+                    }
+                    ImGui::EndCombo();
+                }
+                
+                // Show assets in selected category
+                if (selectedCategory < categories.size()) {
+                    auto categoryAssets = assetManager->GetAssetsByCategory(categories[selectedCategory]);
+                    
+                    ImGui::BeginChild("AssetList", ImVec2(0, 150), true);
+                    for (const auto& asset : categoryAssets) {
+                        if (ImGui::Selectable(asset.name.c_str())) {
+                            // TODO: Select asset for placement
+                        }
+                    }
+                    ImGui::EndChild();
+                }
+            }
+            
+            ImGui::Separator();
+            
+            // Action buttons
+            if (ImGui::Button("Place Selected", ImVec2(120, 30))) {
+                // TODO: Place selected asset
+            }
             ImGui::SameLine();
-            ImGui::RadioButton("Rotate", &transform, 1);
-            ImGui::SameLine();
-            ImGui::RadioButton("Scale", &transform, 2);
+            if (ImGui::Button("Clear Selection", ImVec2(120, 30))) {
+                // TODO: Clear selection
+            }
             
             ImGui::End();
         }
@@ -500,19 +707,78 @@ private:
     void RenderConsole() {
         if (!showConsole) return;
         
-        ImGui::SetNextWindowSize(ImVec2(600, 200), ImGuiCond_FirstUseEver);
+        ImGui::SetNextWindowSize(ImVec2(600, 300), ImGuiCond_FirstUseEver);
         if (ImGui::Begin("Console", &showConsole)) {
             ImGui::Text("Console Output");
             ImGui::Separator();
-            ImGui::Text("Ready for commands...");
             
-            static char command[256] = "";
-            if (ImGui::InputText("Command", command, sizeof(command), ImGuiInputTextFlags_EnterReturnsTrue)) {
-                // Process command
-                ImGui::SetKeyboardFocusHere(-1);
+            // Console output area
+            ImGui::BeginChild("ConsoleOutput", ImVec2(0, 220), true);
+            ImGui::Text("Cryptic Dungeon Map Editor Console");
+            ImGui::Text("Type 'help' for available commands");
+            ImGui::Separator();
+            ImGui::Text("Available Commands:");
+            ImGui::Text("  help - Show this help");
+            ImGui::Text("  new - Create new map");
+            ImGui::Text("  save <filename> - Save map");
+            ImGui::Text("  load <filename> - Load map");
+            ImGui::Text("  add <type> <name> - Add object");
+            ImGui::Text("  delete <name> - Delete object");
+            ImGui::Text("  list - List all objects");
+            ImGui::Text("  camera <x> <y> <z> - Set camera position");
+            ImGui::Text("  mode <0|1|2> - Set mode (0=Terrain, 1=Model, 2=Camera)");
+            ImGui::Text("  clear - Clear console");
+            ImGui::Text("  quit - Exit application");
+            ImGui::EndChild();
+            
+            // Command input
+            static char commandBuffer[256] = "";
+            if (ImGui::InputText("Command", commandBuffer, sizeof(commandBuffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
+                ProcessConsoleCommand(commandBuffer);
+                commandBuffer[0] = '\0';
             }
             
             ImGui::End();
+        }
+    }
+    
+    void ProcessConsoleCommand(const std::string& command) {
+        std::string cmd = command;
+        std::transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
+        
+        if (cmd == "help") {
+            // Help already shown in console
+        } else if (cmd == "new") {
+            if (mapData) mapData->NewMap();
+        } else if (cmd.substr(0, 4) == "save") {
+            std::string filename = cmd.substr(5);
+            if (mapData && !filename.empty()) mapData->SaveMap(filename);
+        } else if (cmd.substr(0, 4) == "load") {
+            std::string filename = cmd.substr(5);
+            if (mapData && !filename.empty()) mapData->LoadMap(filename);
+        } else if (cmd.substr(0, 3) == "add") {
+            // TODO: Parse add command
+        } else if (cmd.substr(0, 6) == "delete") {
+            std::string name = cmd.substr(7);
+            if (mapData && !name.empty()) mapData->DeleteObjectByName(name);
+        } else if (cmd == "list") {
+            if (mapData) {
+                const auto& objects = mapData->GetAllObjects();
+                for (const auto& obj : objects) {
+                    std::cout << "Object: " << obj.name << " (" << obj.type << ")" << std::endl;
+                }
+            }
+        } else if (cmd.substr(0, 6) == "camera") {
+            // TODO: Parse camera command
+        } else if (cmd.substr(0, 4) == "mode") {
+            int mode = std::stoi(cmd.substr(5));
+            SetMode(mode);
+        } else if (cmd == "clear") {
+            // Console will be cleared on next frame
+        } else if (cmd == "quit") {
+            isRunning = false;
+        } else if (!cmd.empty()) {
+            std::cout << "Unknown command: " << command << std::endl;
         }
     }
     
@@ -588,10 +854,13 @@ private:
     bool showTerrainPanel;
     bool showModelPanel;
     bool showConsole;
+    bool showAssetBrowser;
     
     std::unique_ptr<GraphicalCamera> camera;
     std::unique_ptr<GraphicalScene> scene;
     std::unique_ptr<ModernRenderer> renderer;
+    std::unique_ptr<MapData> mapData;
+    std::unique_ptr<AssetManager> assetManager;
 };
 
 int main() {

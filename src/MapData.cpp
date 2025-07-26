@@ -33,7 +33,6 @@ void MapData::NewMap() {
     
     // Add default objects
     AddObject("Terrain", "terrain", glm::vec3(0.0f, 0.0f, 0.0f));
-    AddObject("Center Cube", "cube", glm::vec3(0.0f, 5.0f, 0.0f));
     AddObject("Grid", "grid", glm::vec3(0.0f, 0.0f, 0.0f));
     
     std::cout << "Created new map: " << mapId << std::endl;

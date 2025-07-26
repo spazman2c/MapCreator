@@ -114,10 +114,38 @@ src/CMakeFiles/GraphicalMapEditor.dir/ModernRenderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GraphicalMapEditor.dir/ModernRenderer.cpp.s"
 	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/src/ModernRenderer.cpp -o CMakeFiles/GraphicalMapEditor.dir/ModernRenderer.cpp.s
 
+src/CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/flags.make
+src/CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o: /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/src/MapData.cpp
+src/CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o"
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o -MF CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o.d -o CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o -c /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/src/MapData.cpp
+
+src/CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.i"
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/src/MapData.cpp > CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.i
+
+src/CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.s"
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/src/MapData.cpp -o CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.s
+
+src/CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/flags.make
+src/CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o: /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/src/AssetManager.cpp
+src/CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o"
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o -MF CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o.d -o CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o -c /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/src/AssetManager.cpp
+
+src/CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.i"
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/src/AssetManager.cpp > CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.i
+
+src/CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.s"
+	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/src/AssetManager.cpp -o CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.s
+
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/flags.make
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.o: /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/imgui.cpp
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.o"
 	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.o -MF CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.o.d -o CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.o -c /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/imgui.cpp
 
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.i: cmake_force
@@ -131,7 +159,7 @@ src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.s: cmake_fo
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/flags.make
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.o: /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/imgui_demo.cpp
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.o"
 	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.o -MF CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.o.d -o CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.o -c /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/imgui_demo.cpp
 
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.i: cmake_force
@@ -145,7 +173,7 @@ src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.s: cma
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/flags.make
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.o: /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/imgui_draw.cpp
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.o"
 	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.o -MF CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.o.d -o CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.o -c /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/imgui_draw.cpp
 
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.i: cmake_force
@@ -159,7 +187,7 @@ src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.s: cma
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_tables.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/flags.make
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_tables.cpp.o: /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/imgui_tables.cpp
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_tables.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_tables.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_tables.cpp.o"
 	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_tables.cpp.o -MF CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_tables.cpp.o.d -o CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_tables.cpp.o -c /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/imgui_tables.cpp
 
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_tables.cpp.i: cmake_force
@@ -173,7 +201,7 @@ src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_tables.cpp.s: c
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_widgets.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/flags.make
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_widgets.cpp.o: /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/imgui_widgets.cpp
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_widgets.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_widgets.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_widgets.cpp.o"
 	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_widgets.cpp.o -MF CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_widgets.cpp.o -c /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/imgui_widgets.cpp
 
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_widgets.cpp.i: cmake_force
@@ -187,7 +215,7 @@ src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_widgets.cpp.s: 
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_glfw.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/flags.make
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_glfw.cpp.o: /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/backends/imgui_impl_glfw.cpp
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_glfw.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_glfw.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_glfw.cpp.o"
 	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_glfw.cpp.o -MF CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_glfw.cpp.o.d -o CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_glfw.cpp.o -c /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/backends/imgui_impl_glfw.cpp
 
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_glfw.cpp.i: cmake_force
@@ -201,7 +229,7 @@ src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_g
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_opengl3.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/flags.make
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_opengl3.cpp.o: /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/backends/imgui_impl_opengl3.cpp
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_opengl3.cpp.o: src/CMakeFiles/GraphicalMapEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_opengl3.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_opengl3.cpp.o"
 	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_opengl3.cpp.o -MF CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_opengl3.cpp.o -c /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/third_party/imgui/backends/imgui_impl_opengl3.cpp
 
 src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/backends/imgui_impl_opengl3.cpp.i: cmake_force
@@ -217,6 +245,8 @@ GraphicalMapEditor_OBJECTS = \
 "CMakeFiles/GraphicalMapEditor.dir/GraphicalMapEditor.cpp.o" \
 "CMakeFiles/GraphicalMapEditor.dir/Shader.cpp.o" \
 "CMakeFiles/GraphicalMapEditor.dir/ModernRenderer.cpp.o" \
+"CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o" \
+"CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o" \
 "CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.o" \
 "CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.o" \
 "CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.o" \
@@ -231,6 +261,8 @@ GraphicalMapEditor_EXTERNAL_OBJECTS =
 src/GraphicalMapEditor: src/CMakeFiles/GraphicalMapEditor.dir/GraphicalMapEditor.cpp.o
 src/GraphicalMapEditor: src/CMakeFiles/GraphicalMapEditor.dir/Shader.cpp.o
 src/GraphicalMapEditor: src/CMakeFiles/GraphicalMapEditor.dir/ModernRenderer.cpp.o
+src/GraphicalMapEditor: src/CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o
+src/GraphicalMapEditor: src/CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o
 src/GraphicalMapEditor: src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui.cpp.o
 src/GraphicalMapEditor: src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_demo.cpp.o
 src/GraphicalMapEditor: src/CMakeFiles/GraphicalMapEditor.dir/__/third_party/imgui/imgui_draw.cpp.o
@@ -245,7 +277,7 @@ src/GraphicalMapEditor: /opt/homebrew/lib/libglm.dylib
 src/GraphicalMapEditor: /opt/homebrew/lib/libassimp.6.0.2.dylib
 src/GraphicalMapEditor: /Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk/usr/lib/libz.tbd
 src/GraphicalMapEditor: src/CMakeFiles/GraphicalMapEditor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable GraphicalMapEditor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable GraphicalMapEditor"
 	cd /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GraphicalMapEditor.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

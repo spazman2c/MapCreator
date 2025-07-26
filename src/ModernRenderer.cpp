@@ -84,8 +84,8 @@ void main() {
 }
 
 void ModernRenderer::CreateTerrainVAO() {
-    // Create a large white terrain square
-    float size = 200.0f;
+    // Create a 100x100 white terrain square
+    float size = 50.0f;
     
     terrainVertices = {
         // Position (x, y, z), Color (r, g, b)
@@ -185,15 +185,15 @@ void ModernRenderer::CreateCubeVAO() {
 }
 
 void ModernRenderer::CreateGridVAO() {
-    // Create a simple grid
-    for (int i = -10; i <= 10; i++) {
-        // X lines
-        gridVertices.push_back({{(float)i, 0.0f, -10.0f}, {0.5f, 0.5f, 0.5f}});
-        gridVertices.push_back({{(float)i, 0.0f,  10.0f}, {0.5f, 0.5f, 0.5f}});
-        
-        // Z lines
-        gridVertices.push_back({{-10.0f, 0.0f, (float)i}, {0.5f, 0.5f, 0.5f}});
-        gridVertices.push_back({{ 10.0f, 0.0f, (float)i}, {0.5f, 0.5f, 0.5f}});
+    // Create a 100x100 grid (both X and Z lines)
+    gridVertices.clear();
+    for (int i = -50; i <= 50; i++) {
+        // Lines parallel to Z (constant X)
+        gridVertices.push_back({{(float)i, 0.0f, -50.0f}, {0.5f, 0.5f, 0.5f}});
+        gridVertices.push_back({{(float)i, 0.0f,  50.0f}, {0.5f, 0.5f, 0.5f}});
+        // Lines parallel to X (constant Z)
+        gridVertices.push_back({{-50.0f, 0.0f, (float)i}, {0.5f, 0.5f, 0.5f}});
+        gridVertices.push_back({{ 50.0f, 0.0f, (float)i}, {0.5f, 0.5f, 0.5f}});
     }
     
     glGenVertexArrays(1, &gridVAO);
@@ -245,4 +245,41 @@ void ModernRenderer::RenderGrid(const glm::mat4& view, const glm::mat4& projecti
     glBindVertexArray(gridVAO);
     glDrawArrays(GL_LINES, 0, gridVertices.size());
     glBindVertexArray(0);
+}
+
+void ModernRenderer::RenderMapObjects(const MapData& mapData, const glm::mat4& view, const glm::mat4& projection) {
+    const auto& objects = mapData.GetAllObjects();
+    
+    for (const auto& obj : objects) {
+        if (!obj.visible) continue;
+        
+        // Create model matrix from object transform
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, obj.position);
+        model = glm::rotate(model, glm::radians(obj.rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::rotate(model, glm::radians(obj.rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::rotate(model, glm::radians(obj.rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+        model = glm::scale(model, obj.scale);
+        
+        // Set shader uniforms
+        basicShader->use();
+        basicShader->setMat4("view", view);
+        basicShader->setMat4("projection", projection);
+        basicShader->setMat4("model", model);
+        
+        // Render based on object type
+        if (obj.type == "terrain") {
+            glBindVertexArray(terrainVAO);
+            glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+            glBindVertexArray(0);
+        } else if (obj.type == "cube") {
+            glBindVertexArray(cubeVAO);
+            glDrawArrays(GL_TRIANGLES, 0, cubeVertices.size());
+            glBindVertexArray(0);
+        } else if (obj.type == "grid") {
+            glBindVertexArray(gridVAO);
+            glDrawArrays(GL_LINES, 0, gridVertices.size());
+            glBindVertexArray(0);
+        }
+    }
 } 

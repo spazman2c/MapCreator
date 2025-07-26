@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o"
+  "CMakeFiles/GraphicalMapEditor.dir/AssetManager.cpp.o.d"
   "CMakeFiles/GraphicalMapEditor.dir/GraphicalMapEditor.cpp.o"
   "CMakeFiles/GraphicalMapEditor.dir/GraphicalMapEditor.cpp.o.d"
+  "CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o"
+  "CMakeFiles/GraphicalMapEditor.dir/MapData.cpp.o.d"
   "CMakeFiles/GraphicalMapEditor.dir/ModernRenderer.cpp.o"
   "CMakeFiles/GraphicalMapEditor.dir/ModernRenderer.cpp.o.d"
   "CMakeFiles/GraphicalMapEditor.dir/Shader.cpp.o"

@@ -104,12 +104,12 @@ src/clean: src/CMakeFiles/GraphicalMapEditor.dir/clean
 src/CMakeFiles/GraphicalMapEditor.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/GraphicalMapEditor.dir/build.make src/CMakeFiles/GraphicalMapEditor.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/GraphicalMapEditor.dir/build.make src/CMakeFiles/GraphicalMapEditor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target GraphicalMapEditor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13 "Built target GraphicalMapEditor"
 .PHONY : src/CMakeFiles/GraphicalMapEditor.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/GraphicalMapEditor.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/GraphicalMapEditor.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/GraphicalMapEditor.dir/rule
@@ -121,7 +121,7 @@ GraphicalMapEditor: src/CMakeFiles/GraphicalMapEditor.dir/rule
 # codegen rule for target.
 src/CMakeFiles/GraphicalMapEditor.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/GraphicalMapEditor.dir/build.make src/CMakeFiles/GraphicalMapEditor.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Finished codegen for target GraphicalMapEditor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13 "Finished codegen for target GraphicalMapEditor"
 .PHONY : src/CMakeFiles/GraphicalMapEditor.dir/codegen
 
 # clean rule for target.

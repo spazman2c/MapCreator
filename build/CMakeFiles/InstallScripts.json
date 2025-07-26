@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/cmake_install.cmake",
+		"/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

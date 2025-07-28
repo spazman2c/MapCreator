@@ -1,5 +1,0 @@
-/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles/edit_cache.dir
-/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/CMakeFiles/rebuild_cache.dir
-/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src/CMakeFiles/GraphicalMapEditor.dir
-/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src/CMakeFiles/edit_cache.dir
-/Users/christophersantangelo/Documents/GitHub/CrypticDungeon/build/src/CMakeFiles/rebuild_cache.dir
